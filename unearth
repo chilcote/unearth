@@ -1,0 +1,61 @@
+#!/usr/bin/python
+'''Returns one or more artifacts about a Mac'''
+
+__author__ = 'Joseph Chilcote (chilcote@gmail.com)'
+__version__ = '0.0.1'
+
+import argparse
+import os
+import sys
+from excavate import Excavate
+
+def main():
+    '''Interactive mode'''
+    parser = argparse.ArgumentParser(
+                        description='Returns one or more artifacts about this Mac')
+    parser.add_argument('--list', action='store_true',
+                        help='list categories')
+    parser.add_argument('--version', action='store_true',
+                        help='show the version number')
+    parser.add_argument('--jss', action='append', nargs='*', metavar='',
+                        help='return in jss format')
+    parser.add_argument('--quiet', action='append', nargs='*', metavar='',
+                        help='return only the values')
+    parser.add_argument('remnants', action='append', nargs=argparse.REMAINDER)
+    args = parser.parse_args()
+
+    artifacts = Excavate()
+
+    if args.jss:
+        categories = args.jss[0]
+    elif args.quiet:
+        categories = args.quiet[0]
+    elif args.remnants:
+        categories = args.remnants[0]
+        if not categories:
+            categories = [
+                os.path.splitext(name)[0]
+                for name in os.listdir(artifacts.module_dir)
+                if name.endswith('.py') and not name == '__init__.py']
+
+    if args.list:
+        for i in sorted(categories):
+            print i
+        exit(0)
+
+    if args.version:
+        print __version__
+        exit(0)
+
+    relics = artifacts.get(sorted(categories)) if categories else {}
+
+    if args.jss:
+        print '<result>%s</result>' % '\n'.join(map(str, relics.values()))
+    elif args.quiet:
+        print '\n'.join(map(str, relics.values()))
+    else:
+        for k, v in sorted(relics.items()):
+            print '%s => %s' % (k, v)
+
+if __name__ == "__main__":
+    sys.exit(main())
