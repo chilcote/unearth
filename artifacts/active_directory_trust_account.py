@@ -1,6 +1,6 @@
 from SystemConfiguration import SCDynamicStoreCopyValue, SCDynamicStoreCreate
 
-factoid = 'result'
+factoid = 'active_directory_trust_account'
 
 def fact():
     '''Returns Active Directory trust account'''
