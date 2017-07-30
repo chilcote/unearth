@@ -19,8 +19,9 @@ def fact():
         ssid = wifi['SSID'].data
         d['security_type'] = wifi['SecurityType']
         d['personal_hotspot'] = wifi['PersonalHotspot']
-        d['last_connected'] = wifi['LastConnected'].strftime('%Y-%m-%dT%H:%M:%S')
-        #d['last_connected'] = time.strftime('%Y-%m-%dT%H:%M:%S', time.localtime(wifi['LastConnected']))
+        if wifi.get('LastConnected', None):
+            d['last_connected'] = wifi['LastConnected'].strftime('%Y-%m-%dT%H:%M:%S')
+            #d['last_connected'] = time.strftime('%Y-%m-%dT%H:%M:%S', time.localtime(wifi['LastConnected']))
         result[ssid] = d
 
     return {factoid: result}
