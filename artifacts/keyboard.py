@@ -6,7 +6,7 @@ factoid = 'keyboard'
 
 def fact():
     '''Returns the keyboard localization'''
-    result = None
+    result = ''
 
     try:
         proc = subprocess.Popen(['/usr/sbin/ioreg',
