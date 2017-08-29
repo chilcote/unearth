@@ -6,7 +6,7 @@ factoid = 'boot_rom_version'
 def fact():
     '''Returns the boot rom version'''
 
-    result = None
+    result = 'None'
 
     try:
         proc = subprocess.Popen(

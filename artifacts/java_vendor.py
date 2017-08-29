@@ -5,7 +5,7 @@ factoid = 'java_vendor'
 
 def fact():
     '''Returns the java vendor (apple or oracle)'''
-    result = None
+    result = 'None'
 
     plist = '/Library/Internet Plug-Ins/JavaAppletPlugin.plugin/Contents/Info.plist'
     if os.path.exists(plist):

@@ -6,7 +6,7 @@ factoid = 'battery_health'
 def fact():
     '''Returns the battery health'''
 
-    result = None
+    result = 'None'
 
     try:
         proc = subprocess.Popen(

@@ -5,7 +5,7 @@ factoid = 'active_directory_dns'
 def fact():
     '''Returns Active Directory DNS Domain Name'''
 
-    result = None
+    result = 'None'
 
     net_config = SCDynamicStoreCreate(None, 'net', None, None)
     d = SCDynamicStoreCopyValue(

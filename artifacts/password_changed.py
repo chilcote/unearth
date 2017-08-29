@@ -7,7 +7,7 @@ factoid = 'password_changed'
 
 def fact():
     '''Gets the date of last password change'''
-    password_changed = None
+    password_changed = 'None'
 
     # for 10.10+ or non-migrated accounts
     username = SCDynamicStoreCopyConsoleUser(None, None, None)[0]
@@ -29,7 +29,7 @@ def fact():
                 if 'passwordLastSetTime' in plist.keys():
                     password_changed = plist['passwordLastSetTime'].date()
 
-    return {factoid: password_changed}
+    return {factoid: str(password_changed)}
 
 if __name__ == '__main__':
     print '<result>%s</result>' % fact()[factoid]

@@ -4,7 +4,7 @@ factoid = 'computername'
 
 def fact():
     '''Returns the ComputerName'''
-    result = None
+    result = 'None'
 
     net_config = SCDynamicStoreCreate(None, "net", None, None)
     sys_info = SCDynamicStoreCopyValue(net_config, "Setup:/System")

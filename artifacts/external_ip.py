@@ -4,7 +4,7 @@ factoid = 'external_ip'
 
 def fact():
     '''Returns the external IP of this Mac'''
-    result = None
+    result = 'None'
 
     url = 'http://ipecho.net/plain'
     url = 'http://icanhazip.com'

@@ -5,7 +5,7 @@ factoid = 'boot_volume'
 
 def fact():
     '''Returns the boot volume'''
-    result = None
+    result = 'None'
 
     try:
         proc = subprocess.Popen(

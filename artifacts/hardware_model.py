@@ -4,7 +4,7 @@ factoid = 'hardware_model'
 
 def fact():
     '''Returns the hardware model'''
-    result = None
+    result = 'None'
 
     try:
         proc = subprocess.Popen(['/usr/sbin/sysctl', '-n', 'hw.model'],

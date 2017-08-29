@@ -9,7 +9,7 @@ factoid = 'gatekeeper_date'
 
 def fact():
     '''Returns the modification date of the gatekeeper package'''
-    result = None
+    result = 'None'
 
     try:
         gkpkgs = subprocess.check_output(['/usr/sbin/pkgutil',

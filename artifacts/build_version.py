@@ -5,7 +5,7 @@ factoid = 'build_version'
 
 def fact():
     '''Returns the macOS build version'''
-    result = None
+    result = 'None'
 
     try:
         proc = subprocess.Popen(

@@ -4,7 +4,7 @@ factoid = 'gatekeeper_status'
 
 def fact():
     '''Return the current Gatekeeper status'''
-    result = None
+    result = 'None'
 
     try:
         proc = subprocess.Popen(['/usr/sbin/spctl', '--status'],
