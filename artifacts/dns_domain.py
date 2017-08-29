@@ -4,7 +4,7 @@ factoid = 'dns_domain'
 
 def fact():
     '''Returns the current dns domain'''
-    result = None
+    result = 'None'
 
     net_config = SCDynamicStoreCreate(None, "net", None, None)
     dns_info = SCDynamicStoreCopyValue(net_config, "State:/Network/Global/DNS")
@@ -14,7 +14,7 @@ def fact():
         except KeyError:
             pass
 
-    return {factoid: result}
+    return {factoid: str(result)}
 
 if __name__ == '__main__':
     print '<result>%s</result>' % fact()[factoid]

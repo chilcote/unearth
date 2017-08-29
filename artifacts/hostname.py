@@ -4,7 +4,7 @@ factoid = 'hostname'
 
 def fact():
     '''Returns the value of the hostname of this Mac'''
-    result = None
+    result = 'None'
 
     net_config = SCDynamicStoreCreate(None, "net", None, None)
     sys_info = SCDynamicStoreCopyValue(net_config, "Setup:/System")

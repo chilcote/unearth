@@ -4,7 +4,7 @@ factoid = 'active_directory_node'
 
 def fact():
     '''Returns Active Directory node'''
-    result = None
+    result = 'None'
 
     net_config = SCDynamicStoreCreate(None, 'net', None, None)
     d = SCDynamicStoreCopyValue(

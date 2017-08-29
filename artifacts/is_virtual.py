@@ -4,7 +4,7 @@ factoid = 'is_virtual'
 
 def fact():
     '''Returns whether the system is a virtual machine'''
-    result = None
+    result = 'None'
     try:
         proc = subprocess.Popen(['/usr/sbin/sysctl', '-n', 'machdep.cpu.features'],
                                 stdout=subprocess.PIPE, stderr=subprocess.PIPE)

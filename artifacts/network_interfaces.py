@@ -14,7 +14,8 @@ def fact():
             SCNetworkInterfaceGetBSDName(interface),
             SCNetworkInterfaceGetHardwareAddressString(interface)
             )
-    return {factoid: interfaces}
+
+    return {factoid: str(interfaces)}
 
 if __name__ == '__main__':
     print '<result>%s</result>' % fact()[factoid]

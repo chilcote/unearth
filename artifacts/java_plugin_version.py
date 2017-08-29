@@ -5,7 +5,7 @@ factoid = 'java_plugin_version'
 
 def fact():
     '''Returns the java plugin version'''
-    result = None
+    result = 'None'
 
     plist = '/Library/Internet Plug-Ins/JavaAppletPlugin.plugin/Contents/Info.plist'
     if os.path.exists(plist):

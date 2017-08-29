@@ -6,7 +6,7 @@ factoid = 'mrt_date'
 
 def fact():
     '''Returns the last date mrt was updated'''
-    result = None
+    result = 'None'
 
     try:
         cmd = ['/usr/sbin/pkgutil', '--pkgs=.*MRT.*']

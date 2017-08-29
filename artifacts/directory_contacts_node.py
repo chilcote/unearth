@@ -4,7 +4,7 @@ factoid = 'directory_contacts_node'
 
 def fact():
     '''Returns the directory search node info'''
-    result = None
+    result = 'None'
     net_config = SCDynamicStoreCreate(None, "net", None, None)
 
     contacts_node = SCDynamicStoreCopyValue(

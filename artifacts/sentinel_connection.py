@@ -4,7 +4,7 @@ factoid = 'sentinel_connection'
 
 def fact():
     '''Returns the sentinel connection'''
-    last_seen = None
+    last_seen = 'None'
     binary = '/usr/local/bin/sentinelctl'
     if os.path.exists(binary) and os.getuid() == 0:
         try:

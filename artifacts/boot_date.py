@@ -6,7 +6,7 @@ factoid = 'boot_date'
 def fact():
     '''Returns the system boot time'''
 
-    result = None
+    result = 'None'
 
     try:
         proc = subprocess.Popen(

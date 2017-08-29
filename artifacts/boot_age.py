@@ -6,7 +6,7 @@ factoid = 'boot_age'
 def fact():
     '''Returns the number of days since last boot'''
 
-    result = None
+    result = 'None'
 
     try:
         proc = subprocess.Popen(

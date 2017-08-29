@@ -4,7 +4,7 @@ factoid = 'active_directory_trust_account'
 
 def fact():
     '''Returns Active Directory trust account'''
-    result = None
+    result = 'None'
 
     net_config = SCDynamicStoreCreate(None, 'net', None, None)
     d = SCDynamicStoreCopyValue(
