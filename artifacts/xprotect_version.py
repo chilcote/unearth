@@ -6,7 +6,7 @@ factoid = 'xprotect_version'
 def fact():
     '''Returns the xprotect version'''
 
-    result = None
+    result = 'None'
     path = '/System/Library/CoreServices/CoreTypes.bundle/Contents/Resources/XProtect.meta.plist'
 
     if os.path.exists(path):

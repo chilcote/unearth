@@ -7,7 +7,7 @@ factoid = 'icloud_optimization'
 def fact():
     '''Returns the iCloud disk optimization status'''
 
-    result = None
+    result = 'None'
 
     console_user = SCDynamicStoreCopyConsoleUser(None, None, None)[0]
     plist = '/Users/%s/Library/Preferences/com.apple.bird.plist' % console_user

@@ -6,7 +6,7 @@ factoid = 'icloud_account'
 
 def fact():
     '''Returns the icloud account'''
-    result = None
+    result = 'None'
 
     console_user = SCDynamicStoreCopyConsoleUser(None, None, None)[0]
     plist = '/Users/%s/Library/Preferences/MobileMeAccounts.plist' % console_user

@@ -7,7 +7,7 @@ factoid = 'xprotect_date'
 def fact():
     '''Returns the last date xprotect was updated'''
 
-    result = None
+    result = 'None'
 
     try:
         cmd = ['/usr/sbin/pkgutil', '--pkgs=.*XProtect.*']

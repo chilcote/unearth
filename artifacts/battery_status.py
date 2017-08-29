@@ -6,7 +6,7 @@ factoid = 'battery_status'
 def fact():
     '''Returns the battery charging status'''
 
-    result = None
+    result = 'None'
     charged, charging = None, None
 
     try:

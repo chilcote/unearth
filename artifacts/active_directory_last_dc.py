@@ -7,7 +7,7 @@ factoid = 'active_directory_last_dc'
 def fact():
     '''Returns the last used domain controller'''
 
-    result = None
+    result = 'None'
     plist = None
 
     try:

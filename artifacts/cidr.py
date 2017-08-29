@@ -43,7 +43,7 @@ def ip_address(iface, net_config, addresses=[]):
 def fact():
     '''Returns the cidr of the current vlan'''
 
-    result = None
+    result = 'None'
 
     net_config = SCDynamicStoreCreate(None, 'net', None, None)
     ip, primary_interface, netmask = '', '', ''

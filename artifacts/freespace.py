@@ -5,7 +5,7 @@ factoid = 'freespace'
 
 def fact():
     '''Returns the free space of the boot drive of this Mac'''
-    result = None
+    result = 'None'
     try:
         proc = subprocess.Popen(['/usr/sbin/diskutil', 'info', '-plist', '/'],
                                 stdout=subprocess.PIPE, stderr=subprocess.PIPE)

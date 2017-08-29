@@ -6,7 +6,7 @@ factoid = 'bootcamp_status'
 def fact():
     '''Returns bootcamp status'''
 
-    result = None
+    result = 'None'
 
     try:
         proc = subprocess.Popen(
