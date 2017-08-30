@@ -21,7 +21,7 @@ def fact():
             pkginfo       = plistlib.readPlistFromString(pkginfo_plist)
             dates.append(pkginfo['install-time'])
         result = time.strftime('%Y-%m-%dT%H:%M:%S', time.localtime(max(dates)))
-    except (OSError, IOError):
+    except (OSError, IOError, subprocess.CalledProcessError):
         pass
 
     return {factoid: result}
