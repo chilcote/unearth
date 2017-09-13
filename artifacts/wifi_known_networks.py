@@ -16,7 +16,9 @@ def fact():
     for i in l:
         d = {}
         wifi = l['{0}'.format(i)]
-        ssid = wifi['SSID'].data
+        # Ensure SSID is converted to utf and ignore characters it could fail
+        # on.
+        ssid = wifi['SSID'].data.decode('utf-8', 'ignore')
         d['security_type'] = wifi['SecurityType']
         d['personal_hotspot'] = wifi['PersonalHotspot']
         if wifi.get('LastConnected', None):
