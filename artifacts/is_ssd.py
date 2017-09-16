@@ -5,7 +5,7 @@ factoid = 'is_ssd'
 
 def fact():
     '''Returns whether the boot drive is an ssd'''
-    result = 'None'
+    result = 'Unknown'
 
     try:
         proc = subprocess.Popen(
@@ -19,7 +19,8 @@ def fact():
 
     if stdout:
         d = plistlib.readPlistFromString(stdout.strip())
-        result = d.get('SolidState', False)
+        if not d['CoreStorageCompositeDisk'] and not d['RAIDMaster']:
+            result = d.get('SolidState', False)
 
     return {factoid: result}
 
