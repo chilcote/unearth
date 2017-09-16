@@ -30,7 +30,7 @@ def fact():
                 if drive['mount_point'] == '/':
                     # Check for CoreStorage physical volume
                     try:
-                        result = drive[0]['com.apple.corestorage.pv']['medium_type']
+                        result = drive['com.apple.corestorage.pv'][0]['medium_type']
                     except KeyError:
                         result = drive['physical_drive']['medium_type']
     except (IOError, OSError):
