@@ -19,7 +19,10 @@ def fact():
 
     if stdout:
         d = plistlib.readPlistFromString(stdout.strip())
-        if not d['CoreStorageCompositeDisk'] and not d['RAIDMaster']:
+        if (
+            not d.get('CoreStorageCompositeDisk', False) and
+            not d.get('RAIDMaster', False)
+           ):
             result = d.get('SolidState', False)
 
     return {factoid: result}
