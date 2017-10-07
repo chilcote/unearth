@@ -5,20 +5,30 @@ import os
 import subprocess
 import sys
 import time
+import objc
+from Foundation import NSBundle
 
 factoid = 'manufactured_date'
 
-def get_external_fact(category):
-    '''Returns info from another module in this project'''
-    d = {}
-    filename = os.path.join(os.path.dirname(__file__), category + '.py')
-    if os.path.exists(filename):
-        try:
-            module = imp.load_source(category, filename)
-            d = module.fact()
-        except (ImportError, AttributeError), err:
-            print >> sys.stderr, 'Error %s in file %s' % (err, filename)
-    return d[category]
+def get_serial():
+    '''Returns the serial number of this Mac.'''
+    IOKit_bundle = NSBundle.bundleWithIdentifier_("com.apple.framework.IOKit")
+
+    functions = [
+        ("IOServiceGetMatchingService", b"II@"),
+        ("IOServiceMatching", b"@*"),
+        ("IORegistryEntryCreateCFProperty", b"@I@@I")
+        ]
+    objc.loadBundleFunctions(IOKit_bundle, globals(), functions)
+
+    kIOMasterPortDefault = 0
+    kIOPlatformSerialNumberKey = 'IOPlatformSerialNumber'
+    kCFAllocatorDefault = None
+
+    platformExpert = IOServiceGetMatchingService(kIOMasterPortDefault, IOServiceMatching("IOPlatformExpertDevice"))
+    serial = IORegistryEntryCreateCFProperty(platformExpert, kIOPlatformSerialNumberKey, kCFAllocatorDefault, 0)
+
+    return serial
 
 def apple_year_offset(dateobj, years=0):
     # Convert to a maleable format
@@ -60,7 +70,7 @@ def manufacture_date(serial):
 def fact():
     '''Returns the estimated manufacture date'''
     manufactured_date = None
-    serial = get_external_fact('serial_number')
+    serial = get_serial()
     if not serial.startswith('VM'):
         manufactured_date = manufacture_date(serial)
 
