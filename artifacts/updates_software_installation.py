@@ -1,12 +1,16 @@
-from CoreFoundation import CFPreferencesCopyAppValue
+#!/usr/bin/env python
 
-factoid = 'updates_software_installation'
+from CoreFoundation import (CFPreferencesCopyValue, kCFPreferencesAnyHost, 
+kCFPreferencesAnyUser)
+
+factoid = 'updates_app_autoupdate'
 
 def fact():
-    '''Returns the status of automatic installation of downloaded updates'''
+    '''Returns the status of automatic updates to MAS apps'''
     status = "disabled"
-    pref = CFPreferencesCopyAppValue('AutoUpdateRestartRequired',
-                    '/Library/Preferences/com.apple.commerce.plist')
+    pref = CFPreferencesCopyValue('AutoUpdateRestartRequired',
+                    '/Library/Preferences/com.apple.commerce.plist',
+                    kCFPreferencesAnyUser, kCFPreferencesAnyHost)
     if pref:
         status = "enabled"
 
