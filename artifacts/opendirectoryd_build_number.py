@@ -4,9 +4,7 @@ factoid = 'opendirectoryd_build_number'
 
 def fact():
     '''
-    Returns the "project version" number used to build opendirectoryd
-    per https://support.apple.com/en-gb/HT208315 to check that
-    "Security Update 2017-001" is installed
+    Returns the current build number of opendirectoryd
     '''
 
     result = 'None'
