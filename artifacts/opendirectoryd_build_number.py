@@ -1,6 +1,6 @@
 import subprocess
 
-factoid = 'opendirectoryd_version'
+factoid = 'opendirectoryd_build_number'
 
 def fact():
     '''
@@ -13,7 +13,7 @@ def fact():
 
     try:
         proc = subprocess.Popen(
-                ['/usr/bin/what', '/usr/libexec/opendirectoryd'],
+                ['/usr/libexec/opendirectoryd', '-v'],
                  stdout=subprocess.PIPE,
                  stderr=subprocess.PIPE
                 )
@@ -22,7 +22,7 @@ def fact():
         stdout = None
 
     if stdout:
-        result = stdout.splitlines()[-1].split(':')[-1]
+        result = stdout.split('(', 1)[1].split(')')[0].split(' ')[-1]
 
     return {factoid: result}
 
