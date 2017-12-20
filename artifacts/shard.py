@@ -8,7 +8,7 @@ import objc
 from Foundation import NSBundle
 
 
-def serial():
+def get_serial():
     '''Return the machine serial number.'''
     IOKit_bundle = NSBundle.bundleWithIdentifier_("com.apple.framework.IOKit")
 
@@ -36,9 +36,10 @@ def serial():
 
 def fact():
     '''Return the machine shard value based off the serial number.'''
+    serial = get_serial()
     if serial is None:
         return 0
-    shard = int(int(hashlib.md5(serial()).hexdigest(), 16) % 100)
+    shard = int(int(hashlib.md5(serial).hexdigest(), 16) % 100)
     # we don't want to have a zero shard
     return {'shard': shard + 1}
 
