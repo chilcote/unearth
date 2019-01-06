@@ -11,17 +11,17 @@ factoid = "mac_address"
 
 def fact():
     '''Returns the mac address of this Mac'''
+    primary_MAC = 'None'
     net_config = SCDynamicStoreCreate(None, "net", None, None)
     states = SCDynamicStoreCopyValue(net_config, "State:/Network/Global/IPv4")
     primary_interface = states["PrimaryInterface"]
-    primary_device = [
+    primary_devices = [
         x
         for x in SCNetworkInterfaceCopyAll()
         if SCNetworkInterfaceGetBSDName(x) == primary_interface
-    ][
-        0
     ]
-    primary_MAC = SCNetworkInterfaceGetHardwareAddressString(primary_device)
+    if primary_devices:
+        primary_MAC = SCNetworkInterfaceGetHardwareAddressString(primary_devices[0])
     return {factoid: primary_MAC}
 
 
