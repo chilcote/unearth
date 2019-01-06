@@ -13,13 +13,13 @@ def main():
     '''Interactive mode'''
     parser = argparse.ArgumentParser(
                         description='Returns one or more artifacts about this Mac')
-    parser.add_argument('--list', action='store_true',
+    parser.add_argument('--list', '-l', action='store_true',
                         help='list categories')
-    parser.add_argument('--version', action='store_true',
+    parser.add_argument('--version', '-v', action='store_true',
                         help='show the version number')
-    parser.add_argument('--jss', action='append', nargs='*', metavar='',
+    parser.add_argument('--jss', '-j', action='append', nargs='*', metavar='',
                         help='return in jss format')
-    parser.add_argument('--quiet', action='append', nargs='*', metavar='',
+    parser.add_argument('--quiet', '-q', action='append', nargs='*', metavar='',
                         help='return only the values')
     parser.add_argument('remnants', action='append', nargs=argparse.REMAINDER)
     args = parser.parse_args()
