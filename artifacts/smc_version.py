@@ -14,7 +14,7 @@ def fact():
                                 stdout=subprocess.PIPE, stderr=subprocess.PIPE)
         stdout, _ = proc.communicate()
         d = plistlib.readPlistFromString(stdout.strip())
-        smc_version = d[0]['_items'][0]['SMC_version_system']
+        smc_version = d[0]['_items'][0].get('SMC_version_system', 'None')
     except (IOError, OSError):
         pass
 
