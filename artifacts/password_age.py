@@ -8,14 +8,13 @@ factoid = 'password_age'
 def fact():
     '''Gets the age of last password change'''
     password_age = None
+    password_changed = False
 
     # for 10.10+ or non-migrated accounts
     username = SCDynamicStoreCopyConsoleUser(None, None, None)[0]
     if username:
         task = subprocess.check_output(['/usr/bin/dscl', '.', 'read', 'Users/' + username, 'accountPolicyData'])
         plist = plistlib.readPlistFromString('\n'.join(task.split()[1:]))
-        if 'creationTime' in plist.keys():
-            creation_date = datetime.datetime.utcfromtimestamp(plist['creationTime']).date()
         if 'passwordLastSetTime' in plist.keys():
             password_changed = datetime.datetime.utcfromtimestamp(plist['passwordLastSetTime']).date()
         else:
