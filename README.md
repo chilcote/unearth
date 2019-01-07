@@ -7,17 +7,19 @@ Usage
 
     usage: unearth [-h] [--list] [--version] [--jss [[...]]] [--quiet [[...]]] ...
 
-    Returns one or more facts about a Mac
+    Returns one or more artifacts about this Mac
 
     positional arguments:
     remnants
 
     optional arguments:
-    -h, --help         show this help message and exit
-    --list             list categories
-    --version          show the version number
-    --jss [ [ ...]]    return in jss format
-    --quiet [ [ ...]]  return only the values
+    -h, --help            show this help message and exit
+    --list, -l            list categories
+    --version, -v         show the version number
+    --jss [ [ ...]], -j [ [ ...]]
+                            return in jss format
+    --quiet [ [ ...]], -q [ [ ...]]
+                            return only the values
 
 Examples
 --------
