@@ -1,13 +1,16 @@
 import objc
 
-factoid = 'wifi_status'
+factoid = "wifi_status"
+
 
 def fact():
-    '''Returns the wifi power status of the Mac'''
+    """Returns the wifi power status of the Mac"""
     wifi_status = None
-    objc.loadBundle('CoreWLAN',
-                    bundle_path='/System/Library/Frameworks/CoreWLAN.framework',
-                    module_globals=globals())
+    objc.loadBundle(
+        "CoreWLAN",
+        bundle_path="/System/Library/Frameworks/CoreWLAN.framework",
+        module_globals=globals(),
+    )
 
     wifi = CWInterface.interfaceNames()
     if wifi:
@@ -19,5 +22,6 @@ def fact():
             wifi_status = None
     return {factoid: wifi_status}
 
-if __name__ == '__main__':
-    print '<result>%s</result>' % fact()[factoid]
+
+if __name__ == "__main__":
+    print("<result>%s</result>" % fact()[factoid])

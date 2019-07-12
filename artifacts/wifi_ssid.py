@@ -1,14 +1,17 @@
 import objc
 
-factoid = 'wifi_ssid'
+factoid = "wifi_ssid"
+
 
 def fact():
-    '''Returns the wifi ssid of the Mac'''
+    """Returns the wifi ssid of the Mac"""
     wifi_ssid = None
 
-    objc.loadBundle('CoreWLAN',
-                    bundle_path='/System/Library/Frameworks/CoreWLAN.framework',
-                    module_globals=globals())
+    objc.loadBundle(
+        "CoreWLAN",
+        bundle_path="/System/Library/Frameworks/CoreWLAN.framework",
+        module_globals=globals(),
+    )
 
     wifi = CWInterface.interfaceNames()
     if wifi:
@@ -22,5 +25,6 @@ def fact():
 
     return {factoid: wifi_ssid}
 
-if __name__ == '__main__':
-    print '<result>%s</result>' % fact()[factoid]
+
+if __name__ == "__main__":
+    print("<result>%s</result>" % fact()[factoid])

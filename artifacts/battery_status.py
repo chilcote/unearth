@@ -1,34 +1,36 @@
-import subprocess
 import plistlib
+import subprocess
 
-factoid = 'battery_status'
+factoid = "battery_status"
+
 
 def fact():
-    '''Returns the battery charging status'''
+    """Returns the battery charging status"""
 
-    result = 'None'
+    result = "None"
     charged, charging = None, None
 
     try:
         proc = subprocess.Popen(
-                ['/usr/sbin/ioreg', '-r', '-c', 'AppleSmartBattery', '-a'],
-                stdout=subprocess.PIPE,
-                stderr=subprocess.PIPE
-                )
+            ["/usr/sbin/ioreg", "-r", "-c", "AppleSmartBattery", "-a"],
+            stdout=subprocess.PIPE,
+            stderr=subprocess.PIPE,
+        )
         stdout, _ = proc.communicate()
         if stdout:
-            charging = plistlib.readPlistFromString(stdout)[0]['IsCharging']
-            charged = plistlib.readPlistFromString(stdout)[0]['FullyCharged']
+            charging = plistlib.readPlistFromString(stdout)[0]["IsCharging"]
+            charged = plistlib.readPlistFromString(stdout)[0]["FullyCharged"]
             if charged and not charging:
-                result = 'Charged'
+                result = "Charged"
             elif charging and not charged:
-                result = 'Charging'
+                result = "Charging"
             elif not charging and not charged:
-                result = 'Not Charging'
+                result = "Not Charging"
     except (IOError, OSError):
         pass
 
     return {factoid: result}
 
-if __name__ == '__main__':
-    print '<result>%s</result>' % fact()[factoid]
+
+if __name__ == "__main__":
+    print("<result>%s</result>" % fact()[factoid])

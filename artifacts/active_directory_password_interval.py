@@ -1,19 +1,20 @@
-import subprocess
 import plistlib
+import subprocess
 
-factoid = 'active_directory_password_interval'
+factoid = "active_directory_password_interval"
+
 
 def fact():
-    '''Returns the Active Directory password interval'''
+    """Returns the Active Directory password interval"""
 
-    result = 'None'
+    result = "None"
 
     try:
         proc = subprocess.Popen(
-                ['/usr/sbin/dsconfigad', '-show', '-xml'],
-                stdout=subprocess.PIPE,
-                stderr=subprocess.PIPE
-                )
+            ["/usr/sbin/dsconfigad", "-show", "-xml"],
+            stdout=subprocess.PIPE,
+            stderr=subprocess.PIPE,
+        )
         stdout, _ = proc.communicate()
     except (IOError, OSError):
         stdout = None
@@ -21,9 +22,10 @@ def fact():
     if stdout:
         d = plistlib.readPlistFromString(stdout.strip())
         data = [d]
-        result = data[0]['Administrative']['Password change interval']
+        result = data[0]["Administrative"]["Password change interval"]
 
     return {factoid: result}
 
-if __name__ == '__main__':
-    print '<result>%s</result>' % fact()[factoid]
+
+if __name__ == "__main__":
+    print("<result>%s</result>" % fact()[factoid])

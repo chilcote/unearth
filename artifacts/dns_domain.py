@@ -1,20 +1,22 @@
-from SystemConfiguration import SCDynamicStoreCreate, SCDynamicStoreCopyValue
+from SystemConfiguration import SCDynamicStoreCopyValue, SCDynamicStoreCreate
 
-factoid = 'dns_domain'
+factoid = "dns_domain"
+
 
 def fact():
-    '''Returns the current dns domain'''
-    result = 'None'
+    """Returns the current dns domain"""
+    result = "None"
 
     net_config = SCDynamicStoreCreate(None, "net", None, None)
     dns_info = SCDynamicStoreCopyValue(net_config, "State:/Network/Global/DNS")
     if dns_info:
         try:
-            result = dns_info.get('DomainName', None)
+            result = dns_info.get("DomainName", None)
         except KeyError:
             pass
 
     return {factoid: str(result)}
 
-if __name__ == '__main__':
-    print '<result>%s</result>' % fact()[factoid]
+
+if __name__ == "__main__":
+    print("<result>%s</result>" % fact()[factoid])

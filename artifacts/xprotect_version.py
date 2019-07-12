@@ -1,20 +1,22 @@
 import os
 import plistlib
 
-factoid = 'xprotect_version'
+factoid = "xprotect_version"
+
 
 def fact():
-    '''Returns the xprotect version'''
+    """Returns the xprotect version"""
 
-    result = 'None'
-    path = '/System/Library/CoreServices/CoreTypes.bundle/Contents/Resources/XProtect.meta.plist'
+    result = "None"
+    path = "/System/Library/CoreServices/CoreTypes.bundle/Contents/Resources/XProtect.meta.plist"
 
     if os.path.exists(path):
-        with open(path, 'r') as f:
+        with open(path, "r"):
             d = plistlib.readPlist(path)
-        result = int(d['Version'])
+        result = int(d["Version"])
 
     return {factoid: result}
 
-if __name__ == '__main__':
-    print '<result>%s</result>' % fact()[factoid]
+
+if __name__ == "__main__":
+    print("<result>%s</result>" % fact()[factoid])

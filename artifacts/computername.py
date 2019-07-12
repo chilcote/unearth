@@ -1,16 +1,18 @@
-from SystemConfiguration import SCDynamicStoreCreate, SCDynamicStoreCopyValue
+from SystemConfiguration import SCDynamicStoreCopyValue, SCDynamicStoreCreate
 
-factoid = 'computername'
+factoid = "computername"
+
 
 def fact():
-    '''Returns the ComputerName'''
-    result = 'None'
+    """Returns the ComputerName"""
+    result = "None"
 
     net_config = SCDynamicStoreCreate(None, "net", None, None)
     sys_info = SCDynamicStoreCopyValue(net_config, "Setup:/System")
-    result = sys_info['ComputerName']
+    result = sys_info["ComputerName"]
 
     return {factoid: result}
 
-if __name__ == '__main__':
-    print '<result>%s</result>' % fact()[factoid]
+
+if __name__ == "__main__":
+    print("<result>%s</result>" % fact()[factoid])

@@ -1,28 +1,29 @@
 import subprocess
-import re
 
-factoid = 'bootcamp_status'
+factoid = "bootcamp_status"
+
 
 def fact():
-    '''Returns bootcamp status'''
+    """Returns bootcamp status"""
 
-    result = 'None'
+    result = "None"
 
     try:
         proc = subprocess.Popen(
-                ['/usr/sbin/diskutil', 'list'],
-                stdout=subprocess.PIPE,
-                stderr=subprocess.PIPE
-                )
+            ["/usr/sbin/diskutil", "list"],
+            stdout=subprocess.PIPE,
+            stderr=subprocess.PIPE,
+        )
         stdout, _ = proc.communicate()
     except (IOError, OSError):
         stdout = None
 
     if stdout:
         for line in stdout.strip().splitlines():
-            result = True if 'Microsoft Basic Data' in line else False
+            result = True if "Microsoft Basic Data" in line else False
 
     return {factoid: result}
 
-if __name__ == '__main__':
-    print '<result>%s</result>' % fact()[factoid]
+
+if __name__ == "__main__":
+    print("<result>%s</result>" % fact()[factoid])

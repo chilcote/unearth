@@ -1,17 +1,14 @@
-from SystemConfiguration import (
-    SCDynamicStoreCreate,
-    SCDynamicStoreCopyValue,
-    SCNetworkInterfaceCopyAll,
-    SCNetworkInterfaceGetBSDName,
-    SCNetworkInterfaceGetHardwareAddressString,
-)
+from SystemConfiguration import (SCDynamicStoreCopyValue, SCDynamicStoreCreate,
+                                 SCNetworkInterfaceCopyAll,
+                                 SCNetworkInterfaceGetBSDName,
+                                 SCNetworkInterfaceGetHardwareAddressString)
 
 factoid = "mac_address"
 
 
 def fact():
-    '''Returns the mac address of this Mac'''
-    primary_MAC = 'None'
+    """Returns the mac address of this Mac"""
+    primary_MAC = "None"
     net_config = SCDynamicStoreCreate(None, "net", None, None)
     states = SCDynamicStoreCopyValue(net_config, "State:/Network/Global/IPv4")
     primary_interface = states["PrimaryInterface"]
@@ -26,4 +23,4 @@ def fact():
 
 
 if __name__ == "__main__":
-    print "<result>%s</result>" % fact()[factoid]
+    print("<result>%s</result>" % fact()[factoid])
