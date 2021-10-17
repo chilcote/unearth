@@ -9,7 +9,7 @@ def fact():
     remote_login = None
     if os.geteuid() == 0:
         output = subprocess.check_output(["/usr/sbin/systemsetup", "getremotelogin"])
-        remote_login = output.split(": ")[1].strip()
+        remote_login = output.decode().split(": ")[1].strip()
     else:
         remote_login = "Unknown"
 

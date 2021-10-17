@@ -18,7 +18,7 @@ def fact():
         stdout = ""
 
     if stdout:
-        if plistlib.readPlistFromString(stdout).get("fmm-mobileme-token-FMM", None):
+        if plistlib.loads(stdout).get("fmm-mobileme-token-FMM", None):
             result = True
         return {factoid: result}
 

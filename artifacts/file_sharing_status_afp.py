@@ -11,7 +11,7 @@ def fact():
             ["/bin/launchctl", "list"], stdout=subprocess.PIPE, stderr=subprocess.PIPE
         )
         result, _ = proc.communicate()
-        if "com.apple.AppleFileServer" in result:
+        if b"com.apple.AppleFileServer" in result:
             status = True
     except (IOError, OSError):
         status = "Unknown"

@@ -19,7 +19,7 @@ def fact():
         stdout = None
 
     if stdout:
-        d = plistlib.readPlistFromString(stdout.strip())
+        d = plistlib.loads(stdout.strip())
         if d.get("CoreStorageCompositeDisk", False):
             result = "fusion"
         elif d.get("RAIDMaster", False):

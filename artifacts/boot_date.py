@@ -21,7 +21,7 @@ def fact():
 
     if stdout:
         result = datetime.datetime.fromtimestamp(
-            int(stdout.strip().split(" = ")[1].split(",")[0])
+            int(stdout.decode().strip().split(" = ")[1].split(",")[0])
         ).strftime("%Y-%m-%dT%H:%M:%S")
 
     return {factoid: result}

@@ -20,7 +20,7 @@ def fact():
 
     if stdout:
         for line in stdout.strip().splitlines():
-            result = True if "Microsoft Basic Data" in line else False
+            result = True if b"Microsoft Basic Data" in line else False
 
     return {factoid: result}
 

@@ -13,7 +13,7 @@ def fact():
             stderr=subprocess.PIPE,
         )
         stdout, _ = proc.communicate()
-        d = plistlib.readPlistFromString(stdout.strip())
+        d = plistlib.loads(stdout.strip())
         recovery_device = d["RecoveryDeviceIdentifier"]
     except (IOError, OSError):
         pass

@@ -21,7 +21,7 @@ def fact():
         stdout = None
 
     if stdout:
-        result = stdout.split("(", 1)[1].split(")")[0].split(" ")[-1]
+        result = stdout.decode().split("(", 1)[1].split(")")[0].split(" ")[-1]
 
     return {factoid: result}
 

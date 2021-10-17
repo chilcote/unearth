@@ -1,4 +1,4 @@
-import urllib2
+import urllib
 
 factoid = "external_ip"
 
@@ -10,10 +10,8 @@ def fact():
     url = "http://ipecho.net/plain"
     url = "http://icanhazip.com"
     try:
-        data = urllib2.urlopen(url).read()
+        data = urllib.urlopen(url).read()
         result = data.strip()
-    except urllib2.URLError:
-        result = "Unknown"
     except Exception:
         pass
 

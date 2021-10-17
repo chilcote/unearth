@@ -21,7 +21,7 @@ def fact():
                 pkginfo_plist = subprocess.check_output(
                     ["/usr/sbin/pkgutil", "--pkg-info-plist", pkgid]
                 )
-                pkginfo = plistlib.readPlistFromString(pkginfo_plist)
+                pkginfo = plistlib.loads(pkginfo_plist)
                 dates.append(pkginfo["install-time"])
 
             result = time.strftime("%Y-%m-%dT%H:%M:%S", time.localtime(max(dates)))

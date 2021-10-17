@@ -20,7 +20,7 @@ def fact():
     out = task.stdout.read()
 
     if out:
-        d = plistlib.readPlistFromString(out)
+        d = plistlib.loads(out)
         if d:
             for i in d[console_user]:
                 profiles.append(i["ProfileDisplayName"])

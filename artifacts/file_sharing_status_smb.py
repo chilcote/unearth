@@ -11,7 +11,7 @@ def fact():
             ["/bin/launchctl", "list"], stdout=subprocess.PIPE, stderr=subprocess.PIPE
         )
         result, _ = proc.communicate()
-        if "com.apple.smbd" in result:
+        if b"com.apple.smbd" in result:
             status = True
     except (IOError, OSError):
         status = "Unknown"

@@ -18,8 +18,8 @@ def fact():
         )
         stdout, _ = proc.communicate()
         if stdout:
-            charging = plistlib.readPlistFromString(stdout)[0]["IsCharging"]
-            charged = plistlib.readPlistFromString(stdout)[0]["FullyCharged"]
+            charging = plistlib.loads(stdout)[0]["IsCharging"]
+            charged = plistlib.loads(stdout)[0]["FullyCharged"]
             if charged and not charging:
                 result = "Charged"
             elif charging and not charged:

@@ -23,7 +23,7 @@ def fact():
         stdout = None
 
     if stdout:
-        result = stdout.splitlines()[-1].split(":")[-1]
+        result = stdout.decode().splitlines()[-1].split(":")[-1]
 
     return {factoid: result}
 

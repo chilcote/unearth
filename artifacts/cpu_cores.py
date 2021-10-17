@@ -20,7 +20,7 @@ def fact():
         stdout = None
 
     if stdout:
-        d = plistlib.readPlistFromString(stdout.strip())
+        d = plistlib.loads(stdout.strip())
         result = d[0]["_items"][0]["number_processors"]
 
     return {factoid: result}

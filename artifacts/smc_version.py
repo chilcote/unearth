@@ -15,7 +15,7 @@ def fact():
             stderr=subprocess.PIPE,
         )
         stdout, _ = proc.communicate()
-        d = plistlib.readPlistFromString(stdout.strip())
+        d = plistlib.loads(stdout.strip())
         smc_version = d[0]["_items"][0].get("SMC_version_system", "None")
     except (IOError, OSError):
         pass

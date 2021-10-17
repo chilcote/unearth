@@ -20,8 +20,8 @@ def fact():
         stdout = None
 
     if stdout:
-        d = plistlib.readPlistFromString(stdout.strip())
-        result = d[0]["_items"][0]["current_processor_speed"]
+        d = plistlib.loads(stdout.strip())
+        result = d[0]["_items"][0].get("current_processor_speed", "")
 
     return {factoid: result}
 

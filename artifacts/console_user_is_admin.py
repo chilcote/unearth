@@ -12,7 +12,7 @@ def fact():
 
     cmd = ["/usr/bin/dscl", "-plist", ".", "read", "/Groups/admin"]
     output = subprocess.check_output(cmd)
-    d = plistlib.readPlistFromString(output)["dsAttrTypeStandard:GroupMembership"]
+    d = plistlib.loads(output)["dsAttrTypeStandard:GroupMembership"]
 
     console_user = SCDynamicStoreCopyConsoleUser(None, None, None)[0]
     if console_user in d:

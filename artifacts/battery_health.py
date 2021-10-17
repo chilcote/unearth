@@ -17,7 +17,7 @@ def fact():
         )
         stdout, _ = proc.communicate()
         if stdout:
-            d = plistlib.readPlistFromString(stdout)[0]
+            d = plistlib.loads(stdout)[0]
             result = "Healthy" if not d["PermanentFailureStatus"] else "Failing"
     except (IOError, OSError):
         pass

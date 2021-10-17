@@ -20,8 +20,8 @@ def fact():
         stdout = None
 
     if stdout:
-        d = plistlib.readPlistFromString(stdout.strip())
-        result = d[0]["_items"][0]["l2_cache_core"]
+        d = plistlib.loads(stdout.strip())
+        result = d[0]["_items"][0].get("l2_cache_core", "")
 
     return {factoid: result}
 

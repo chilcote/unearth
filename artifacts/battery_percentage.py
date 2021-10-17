@@ -17,8 +17,8 @@ def fact():
         )
         stdout, _ = proc.communicate()
         if stdout:
-            if "InternalBattery" in stdout:
-                result = re.findall(r"\d+%", stdout.splitlines()[1])[0].replace("%", "")
+            if "InternalBattery" in stdout.decode():
+                result = re.findall(r"\d+%", stdout.decode().splitlines()[1])[0].replace("%", "")
     except (IOError, OSError):
         pass
 

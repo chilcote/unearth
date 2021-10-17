@@ -19,7 +19,7 @@ def fact():
         stdout = None
 
     if stdout:
-        d = plistlib.readPlistFromString(stdout.strip())
+        d = plistlib.loads(stdout.strip())
         result = d.get("FilesystemType", "None")
 
     return {factoid: result}

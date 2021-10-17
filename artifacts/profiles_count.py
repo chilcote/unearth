@@ -13,7 +13,7 @@ def fact():
     out = task.stdout.read()
 
     if out:
-        d = plistlib.readPlistFromString(out)
+        d = plistlib.loads(out)
         if d:
             profiles = len(d["_computerlevel"])
 

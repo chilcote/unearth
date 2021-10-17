@@ -17,7 +17,7 @@ def fact():
         )
         stdout, _ = proc.communicate()
         if stdout:
-            result = plistlib.readPlistFromString(stdout)[0]["CycleCount"]
+            result = plistlib.loads(stdout)[0]["CycleCount"]
     except (IOError, OSError):
         pass
 

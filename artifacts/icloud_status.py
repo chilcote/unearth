@@ -13,7 +13,7 @@ def fact():
     plist = "/Users/%s/Library/Preferences/MobileMeAccounts.plist" % console_user
     if os.path.exists(plist):
         d = CFPreferencesCopyAppValue("Accounts", plist)
-        result = d[0]["LoggedIn"] if d else False
+        result = d[0].get("LoggedIn", "") if d else False
 
     return {factoid: result}
 

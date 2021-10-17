@@ -66,8 +66,8 @@ def fact():
 
         if stdout:
             for line in stdout.splitlines():
-                if ip in line:
-                    netmask = line.split(" ")[3].lower()
+                if ip in line.decode():
+                    netmask = line.decode().split(" ")[3].lower()
             count = int(0)
             count += int(netmask.count("f")) * 4
             count += int(netmask.count("e")) * 3

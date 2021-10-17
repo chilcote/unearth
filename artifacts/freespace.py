@@ -14,7 +14,7 @@ def fact():
             stderr=subprocess.PIPE,
         )
         stdout, _ = proc.communicate()
-        xml = plistlib.readPlistFromString(stdout)
+        xml = plistlib.loads(stdout)
         result = int(xml["FreeSpace"]) / 1000 / 1000 / 1000
     except (IOError, OSError):
         pass

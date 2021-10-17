@@ -1,4 +1,4 @@
-#!/usr/bin/python
+#!/usr/bin/python3
 """Returns one or more artifacts about a Mac"""
 
 __author__ = "Joseph Chilcote (chilcote@gmail.com)"

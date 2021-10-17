@@ -13,13 +13,13 @@ def fact():
     cmd = ["/usr/bin/dscl", ".", "list", "/Users"]
     output = subprocess.check_output(cmd)
     for user in output.split():
-        if user not in excluded and not user.startswith("_"):
+        if user not in excluded and not user.decode().startswith("_"):
             users.append(user)
 
     for user in users:
-        cmd = ["/usr/bin/dscl", "-plist", ".", "read", "/Users/" + user]
+        cmd = ["/usr/bin/dscl", "-plist", ".", "read", "/Users/" + user.decode()]
         output = subprocess.check_output(cmd)
-        d = plistlib.readPlistFromString(output)
+        d = plistlib.loads(output)
         homes.append(d["dsAttrTypeStandard:NFSHomeDirectory"][0])
 
     return {factoid: homes}

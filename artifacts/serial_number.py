@@ -1,30 +1,17 @@
-import objc
-from Foundation import NSBundle
+import plistlib
+import subprocess
 
 factoid = "serial_number"
 
 
 def fact():
     """Returns the serial number of this Mac."""
-    IOKit_bundle = NSBundle.bundleWithIdentifier_("com.apple.framework.IOKit")
-
-    functions = [
-        ("IOServiceGetMatchingService", b"II@"),
-        ("IOServiceMatching", b"@*"),
-        ("IORegistryEntryCreateCFProperty", b"@I@@I"),
+    output = subprocess.check_output(
+        ["/usr/sbin/ioreg", "-c", "IOPlatformExpertDevice", "-d", "2", "-a"]
+    )
+    serial = plistlib.loads(output)["IORegistryEntryChildren"][0][
+        "IOPlatformSerialNumber"
     ]
-    objc.loadBundleFunctions(IOKit_bundle, globals(), functions)
-
-    kIOMasterPortDefault = 0
-    kIOPlatformSerialNumberKey = "IOPlatformSerialNumber"
-    kCFAllocatorDefault = None
-
-    platformExpert = IOServiceGetMatchingService(
-        kIOMasterPortDefault, IOServiceMatching("IOPlatformExpertDevice")
-    )
-    serial = IORegistryEntryCreateCFProperty(
-        platformExpert, kIOPlatformSerialNumberKey, kCFAllocatorDefault, 0
-    )
 
     return {factoid: serial}
 

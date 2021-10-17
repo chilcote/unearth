@@ -13,7 +13,7 @@ def fact():
             stderr=subprocess.PIPE,
         )
         stdout, _ = proc.communicate()
-        result = True if "VMM" in stdout else False
+        result = True if b"VMM" in stdout else False
     except (IOError, OSError):
         pass
 

@@ -20,7 +20,7 @@ def fact():
         result = "Unknown"
 
     if output:
-        result = plistlib.readPlistFromString(output)[0].get("KeyboardLanguage")
+        result = plistlib.loads(output)[0].get("KeyboardLanguage")
 
     return {factoid: result.strip()}
 

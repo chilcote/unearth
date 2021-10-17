@@ -21,7 +21,7 @@ def fact():
 
     if stdout:
         boot_date = datetime.datetime.fromtimestamp(
-            int(stdout.strip().split(" = ")[1].split(",")[0])
+            int(stdout.decode().strip().split(" = ")[1].split(",")[0])
         ).date()
         today = datetime.datetime.utcnow().date()
         result = (today - boot_date).days

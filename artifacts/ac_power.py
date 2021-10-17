@@ -16,7 +16,7 @@ def fact():
         )
         stdout, _ = proc.communicate()
         for line in stdout.splitlines():
-            if "AC Power" in line:
+            if b"AC Power" in line:
                 result = True
     except (IOError, OSError):
         pass
