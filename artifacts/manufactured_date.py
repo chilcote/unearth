@@ -1,74 +1,81 @@
-# ref: https://github.com/pudquick/pyMacWarranty
 import datetime
-import time
-
-import objc
-from Foundation import NSBundle
+import plistlib
+import subprocess
 
 factoid = "manufactured_date"
+
+manu_weeks = {
+    "1": 1,
+    "2": 2,
+    "3": 3,
+    "4": 4,
+    "5": 5,
+    "6": 6,
+    "7": 7,
+    "8": 8,
+    "9": 9,
+    "C": 10,
+    "D": 11,
+    "F": 12,
+    "G": 13,
+    "H": 14,
+    "J": 15,
+    "K": 16,
+    "M": 17,
+    "N": 18,
+    "L": 19,
+    "P": 20,
+    "Q": 21,
+    "R": 22,
+    "T": 23,
+    "V": 24,
+    "W": 25,
+    "X": 26,
+    "Y": 27,
+}
 
 
 def get_serial():
     """Returns the serial number of this Mac."""
-    IOKit_bundle = NSBundle.bundleWithIdentifier_("com.apple.framework.IOKit")
-
-    functions = [
-        ("IOServiceGetMatchingService", b"II@"),
-        ("IOServiceMatching", b"@*"),
-        ("IORegistryEntryCreateCFProperty", b"@I@@I"),
+    output = subprocess.check_output(
+        ["/usr/sbin/ioreg", "-c", "IOPlatformExpertDevice", "-d", "2", "-a"]
+    )
+    return plistlib.loads(output)["IORegistryEntryChildren"][0][
+        "IOPlatformSerialNumber"
     ]
-    objc.loadBundleFunctions(IOKit_bundle, globals(), functions)
-
-    kIOMasterPortDefault = 0
-    kIOPlatformSerialNumberKey = "IOPlatformSerialNumber"
-    kCFAllocatorDefault = None
-
-    platformExpert = IOServiceGetMatchingService(
-        kIOMasterPortDefault, IOServiceMatching("IOPlatformExpertDevice")
-    )
-    serial = IORegistryEntryCreateCFProperty(
-        platformExpert, kIOPlatformSerialNumberKey, kCFAllocatorDefault, 0
-    )
-
-    return serial
 
 
-def apple_year_offset(dateobj, years=0):
-    # Convert to a maleable format
-    mod_time = dateobj.timetuple()
-    # Offset year by number of years
-    mod_time = time.struct_time(tuple([mod_time[0] + years]) + mod_time[1:])
-    # Convert back to a datetime obj
-    return datetime.datetime.fromtimestamp(int(time.mktime(mod_time)))
+manu_years = {
+    "C": ["2020", 0],
+    "D": ["2020", 26],
+    "F": ["2021", 0],
+    "G": ["2021", 26],
+    "H": ["2022", 0],
+    "J": ["2022", 26],
+    "K": ["2013", 0],
+    "L": ["2013", 26],
+    "M": ["2014", 0],
+    "N": ["2014", 26],
+    "P": ["2015", 0],
+    "Q": ["2015", 26],
+    "R": ["2016", 0],
+    "S": ["2016", 26],
+    "T": ["2017", 0],
+    "V": ["2017", 26],
+    "W": ["2018", 0],
+    "X": ["2018", 26],
+    "Y": ["2019", 0],
+    "Z": ["2019", 26],
+}
 
 
 def manufacture_date(serial):
-    # http://www.macrumors.com/2010/04/16/apple-tweaks-serial-number-format-with-new-macbook-pro/
-    if 10 < len(serial) < 13:
-        if len(serial) == 11:
-            # Old format
-            year = serial[2].lower()
-            est_year = 2000 + "   3456789012".index(year)
-            week = int(serial[3:5]) - 1
-            year_time = datetime.date(year=est_year, month=1, day=1)
-            if week:
-                week_dif = datetime.timedelta(weeks=week)
-                year_time += week_dif
-        else:
-            # New format
-            alpha_year = "cdfghjklmnpqrstvwxyz"
-            year = serial[3].lower()
-            est_year = 2010 + (alpha_year.index(year) / 2)
-            # 1st or 2nd half of the year
-            est_half = alpha_year.index(year) % 2
-            week = serial[4].lower()
-            alpha_week = " 123456789cdfghjklmnpqrtvwxy"
-            est_week = alpha_week.index(week) + (est_half * 26) - 1
-            year_time = datetime.date(year=est_year, month=1, day=1)
-            if est_week:
-                week_dif = datetime.timedelta(weeks=est_week)
-                year_time += week_dif
-    return apple_year_offset(year_time).strftime("%Y-%m-%d")
+    manu_year = manu_years[serial[3]][0]
+    manu_week = manu_weeks[serial[4]] + manu_years[serial[3]][1]
+    year_time = datetime.date(year=int(manu_year), month=1, day=1)
+    week_diff = datetime.timedelta(weeks=manu_week)
+    manu_date = year_time + week_diff
+    return manu_date
 
 
 def fact():
