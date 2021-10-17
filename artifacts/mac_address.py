@@ -1,7 +1,10 @@
-from SystemConfiguration import (SCDynamicStoreCopyValue, SCDynamicStoreCreate,
-                                 SCNetworkInterfaceCopyAll,
-                                 SCNetworkInterfaceGetBSDName,
-                                 SCNetworkInterfaceGetHardwareAddressString)
+from SystemConfiguration import (
+    SCDynamicStoreCopyValue,
+    SCDynamicStoreCreate,
+    SCNetworkInterfaceCopyAll,
+    SCNetworkInterfaceGetBSDName,
+    SCNetworkInterfaceGetHardwareAddressString,
+)
 
 factoid = "mac_address"
 

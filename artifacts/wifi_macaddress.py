@@ -1,7 +1,9 @@
-from SystemConfiguration import (SCNetworkInterfaceCopyAll,
-                                 SCNetworkInterfaceGetBSDName,
-                                 SCNetworkInterfaceGetHardwareAddressString,
-                                 SCNetworkInterfaceGetLocalizedDisplayName)
+from SystemConfiguration import (
+    SCNetworkInterfaceCopyAll,
+    SCNetworkInterfaceGetBSDName,
+    SCNetworkInterfaceGetHardwareAddressString,
+    SCNetworkInterfaceGetLocalizedDisplayName,
+)
 
 factoid = "wifi_macaddress"
 

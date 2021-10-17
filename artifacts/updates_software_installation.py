@@ -1,5 +1,8 @@
-from CoreFoundation import (CFPreferencesCopyValue, kCFPreferencesAnyHost,
-                            kCFPreferencesAnyUser)
+from CoreFoundation import (
+    CFPreferencesCopyValue,
+    kCFPreferencesAnyHost,
+    kCFPreferencesAnyUser,
+)
 
 factoid = "updates_app_autoupdate"
 

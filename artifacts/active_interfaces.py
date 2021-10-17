@@ -1,7 +1,6 @@
 import subprocess
 
-from SystemConfiguration import (SCNetworkInterfaceCopyAll,
-                                 SCNetworkInterfaceGetBSDName)
+from SystemConfiguration import SCNetworkInterfaceCopyAll, SCNetworkInterfaceGetBSDName
 
 factoid = "active_interfaces"
 
